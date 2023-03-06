@@ -3,13 +3,11 @@
 
 ## Table of contents
 * [Description](#description)
-* [Visuals](#visuals)
 * [Installation](#installation)
 * [Support](#support)
 * [Contributing](#contributing)
 * [Authors and acknowledgment](#authors-and-acknowledgment)
 * [License](#license)
-* [Project status](#project-status)
 
 ## General info 
 This project is a small mobile application using Ionic and Angular.
