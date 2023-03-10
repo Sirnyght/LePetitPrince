@@ -31,12 +31,20 @@
   <!-- Get data from tabs.page.ts data -->
   <ion-card *ngFor="let article of articlesToShow">
     <ion-card-header>
-      <ion-card-title>{{article.titre}}</ion-card-title>
-
+      <!-- If article is important, add icon to title-->
+      <!-- Title -->
+      <ion-card-title *ngIf="article.important">
+        <ion-icon name="alert-circle" color="danger"></ion-icon>
+        {{article.titre}}
+      </ion-card-title>
+      <ion-card-title *ngIf="!article.important">
+        {{article.titre}}
+      </ion-card-title>
       <!-- Date -->
       <ion-card-subtitle>{{article.date}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
+
       <p>{{article.texte}}</p>
       <!-- Images -->
       <!-- For each photo in articles.photos, get image filename and legend -->
