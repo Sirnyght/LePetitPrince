@@ -7,18 +7,30 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <form>
+  <form #form="ngForm" (ngSubmit)="login(form)">
     <ion-item lines="full">
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-label position="floating">Login</ion-label>
+      <!-- <ion-input type="text" name="username" ngModel required></ion-input> -->
+      <!-- If user is set, prefill the input -->
+      <ion-input type="text" name="username" [(ngModel)]="user.username" required value="{{user.username}}"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" required></ion-input>
+      <!-- <ion-input type="password" name="password" ngModel required></ion-input> -->
+      <!-- If user is set, prefill the input -->
+      <ion-input type="password" name="password" [(ngModel)]="user.password" required value="{{user.password}}"></ion-input>
+    </ion-item>
+    <!-- Add remember me checkbox -->
+    <ion-item lines="full">
+      <ion-label>Remember me</ion-label>
+      <!-- <ion-checkbox slot="start" type="checkbox" name="remember" checked="false" ngModel></ion-checkbox> -->
+      <ion-checkbox slot="start" type="checkbox" name="remember" checked="false" [(ngModel)]="remember"></ion-checkbox>
     </ion-item>
     <ion-row>
       <ion-col>
+        <!-- On button click, launch login function -->
         <ion-button type="submit" color="danger" expand="block">Sign In</ion-button>
+        <!--  (click)="login(form)" -->
       </ion-col>
     </ion-row>
   </form>

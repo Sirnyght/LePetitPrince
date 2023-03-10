@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'ionic.lepetitprince',
-  appName: 'lepetitprince',
+  appName: 'Le petit prince',
   webDir: 'www',
   bundledWebRuntime: false
 };
