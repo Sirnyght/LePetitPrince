@@ -114,6 +114,11 @@
                 "glob": "**/*.svg",
                 "input": "src/assets/app-icons",
                 "output": "./svg"
+              },
+              {
+                "glob": "**/*.png",
+                "input": "src/assets/",
+                "output": "./png"
               }
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss"],

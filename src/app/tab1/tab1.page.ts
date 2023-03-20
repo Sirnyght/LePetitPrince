@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonSlides, LoadingController } from '@ionic/angular';
 import { Preferences } from '@capacitor/preferences';
 
 @Component({
@@ -20,7 +20,8 @@ export class Tab1Page {
   articlesToShow: any;
   favorites: any;
   showingOnlyFavorites: boolean = false;
-
+  hasTutorialBeenSeen: boolean = false;
+  
   constructor(private loadingController: LoadingController) {
   }
   
@@ -48,6 +49,7 @@ export class Tab1Page {
     const checkDataArticles = async (key: string) => {
       const { value } = await Preferences.get({ key });
       if (value) {
+        loading.dismiss();
         this.articles = JSON.parse(value).articles;
         this.articlesToShow = this.articles;
       }
@@ -62,6 +64,15 @@ export class Tab1Page {
       }
     }
     checkDataFavorites('favorites');
+
+    const checkTutorial = async (key: string) => {
+      const { value } = await Preferences.get({ key });
+      if (value) {
+        this.hasTutorialBeenSeen = JSON.parse(value);
+      }
+    }
+    checkTutorial('tutorial');  
+    console.log(this.hasTutorialBeenSeen);
 
     // this.classe = this.articles[0].classe; 
   }
@@ -121,6 +132,16 @@ export class Tab1Page {
     // Show all the articles and set the flag
     this.articlesToShow = this.articles;
     this.showingOnlyFavorites = false;
+  }
+
+  tutorialHasBeenSeen() {
+    this.hasTutorialBeenSeen = true;
+
+    // Save the data using Preferences
+    Preferences.set({
+      key: 'tutorial',
+      value: this.hasTutorialBeenSeen.toString()
+    });
   }
 
   search(event: any) {

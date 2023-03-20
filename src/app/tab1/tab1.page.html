@@ -6,7 +6,60 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" *ngIf="!hasTutorialBeenSeen">
+  <ion-slides pager="true" >
+    <ion-slide>
+      <ion-card>
+        <ion-card-header><ion-card-title>Bienvenue sur l'application "Le Petit Prince" !</ion-card-title></ion-card-header>
+        <ion-card-content><p>Cette application concerne les classes de maternelles de l'école "Le Petit Prince".</p>
+        <p>Ce tutoriel a pour but de vous montrer comment utiliser l'application.</p></ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card>
+        <ion-card-header><ion-card-title>Les articles</ion-card-title></ion-card-header>
+        <ion-card-content><p>Les articles sont des articles de la classe de votre enfant et de l'école qui vous permettent de découvrir des sujets d'actualité.</p>
+        <p>Vous pouvez les consulter en cliquant sur l'icône "Articles" dans la barre de navigation en bas de l'écran.</p>
+        <p>Vous pouvez également les ajouter à vos favoris en cliquant sur l'icône "Coeur" en haut à droite de l'article.</p>
+        <p>Vous pouvez ensuite les retrouver dans l'onglet "Favoris" en cliquant sur l'icône "Coeur" en haut à droite de l'écran.</p></ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card>
+        <ion-card-header><ion-card-title>La galerie d'images</ion-card-title></ion-card-header>
+        <ion-card-content><p>La galerie d'images vous permet de consulter les photos de la classe de votre enfant et de l'école.</p>
+        <p>Vous pouvez les consulter en cliquant sur l'icône "Galerie d'images" dans la barre de navigation en bas de l'écran.</p></ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card>
+      <ion-card-header><ion-card-title>Les dates importantes</ion-card-title></ion-card-header>
+      <ion-card-content><p>Les dates importantes sont des dates importantes de la classe de votre enfant et de l'école.</p>
+      <p>Vous pouvez les consulter en cliquant sur l'icône "Dates importantes" dans la barre de navigation en bas de l'écran.</p></ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card>
+        <ion-card-header><ion-card-title>Les informations de contact</ion-card-title></ion-card-header>
+        <ion-card-content><p>Les informations de contact sont les informations de contact de la classe de votre enfant et de l'école.</p>
+        <p>Vous pouvez les consulter en cliquant sur l'icône "Informations de contact" dans la barre de navigation en bas de l'écran.</p></ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card>
+        <ion-card-header><ion-card-title>Connexion et déconnexion</ion-card-title></ion-card-header>
+        <ion-card-content><p>Vous pouvez vous connecter à l'application en cliquant sur le bouton "Connexion" en haut à droite de l'écran.</p>
+        <p>Si la case "Se souvenir de moi" est cochée, vous serez automatiquement connecté à l'application à chaque fois que vous l'ouvrirez.</p>
+        <p>Vous pouvez vous déconnecter de l'application en cliquant sur le bouton "Déconnexion" dans la barre de navigation en bas de l'écran.</p></ion-card-content>
+        <ion-button (click)="tutorialHasBeenSeen()" fill="clear" color="danger">
+          <ion-label>J'ai bien lu le tutoriel</ion-label>
+        </ion-button>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+<ion-content [fullscreen]="true" *ngIf="hasTutorialBeenSeen">  
   <ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="100" [pullMax]="200" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -26,7 +79,7 @@
       <!-- Add a search bar to filter articles when pressing enter -->
       <ion-searchbar (ionChange)="search($event)" placeholder="Rechercher un article"></ion-searchbar>
     </ion-toolbar>
-    
+  
   </ion-header>
   <!-- Get data from tabs.page.ts data -->
   <ion-card *ngFor="let article of articlesToShow">

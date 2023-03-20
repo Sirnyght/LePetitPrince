@@ -31,30 +31,42 @@ export class LoginPage implements OnInit {
   }
 
   login(form: NgForm) {
+    console.log('Accessing login');
+
     // Get the user data from the html form
     // console.log(form.value);
     this.user.username = form.value.username;
     this.user.password = form.value.password;
+    console.log('First accessing http://www.sebastien-thon.fr');
+
     // this.remember = form.value.remember;
-    console.log(form.value.remember);
+    // console.log(form.value.remember);
 
     // interrogate http://www.sebastien-thon.fr/prince/index.php?connexion
     // if success, then navigate to tabs
     // if failure, then display error message
+    console.log('Second accessing http://www.sebastien-thon.fr');
+    console.log('Third accessing http://www.sebastien-thon.fr');
     this.http.get('http://www.sebastien-thon.fr/prince/index.php?connexion&login=' + this.user.username + '&mdp=' + this.user.password).subscribe((data: any) => {
+      console.log('Checking data resultat');
       if (data.resultat  === 'OK') {
+        console.log('Login successful, accessing user data');
         let navigationExtras: NavigationExtras = {
           state: {
             user: this.user
           }
         };
+        console.log('Accessed user data')
         if (form.value.remember) {
+          console.log('Remembering user');
           console.log(form.value.remember);
           this.rememberMe();
         } else {
+          console.log('Forgetting user');
           console.log(form.value.remember);
           this.forgetMe();
         }
+        console.log('Going to california');
         this.getData();
         this.router.navigate(['/tabs'], navigationExtras);
       } else {

@@ -24,3 +24,20 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+// App background is ..\assets\app-background.png
+// App logo is ..\assets\app-logo.png
+// App icon is ..\assets\app-icon.png
+
+ion-content {
+    --background: url(assets/app-background.png) 0 0/100% 100% no-repeat;
+}
+
+ion-card {
+    // Background have an opacity of 0.5
+    --background: rgba(255, 255, 255, 0.8);
+}
+
+ion-slides {
+    --background: rgba(255, 255, 255, 0.8);
+}
